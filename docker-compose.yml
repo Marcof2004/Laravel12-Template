@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel-app
+    container_name: Optimize-challenge
+    restart: unless-stopped
+    working_dir: /var/www
+    network_mode: host
+    volumes:
+      - ./:/var/www
+      - ./supervisor/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
